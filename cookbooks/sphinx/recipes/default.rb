@@ -30,6 +30,7 @@ utility_name = "sphinx"
 cron_interval = 10 #If this is not set your data will NOT be indexed
 
 if utility_name
+  sphinx_host = node[:utility_instances].find {|u| u[:name] == utility_name }[:hostname]
   if ['solo', 'app', 'app_master'].include?(node[:instance_role])
     run_for_app(appname) do |app_name, data|
       ey_cloud_report "Sphinx" do
@@ -50,6 +51,7 @@ if utility_name
         source "sphinx.yml.erb"
         variables({
           :app_name => app_name,
+          :address => sphinx_host,
           :user => node[:owner_name],
           :mem_limit => 32
         })
@@ -111,6 +113,7 @@ if utility_name
         source "sphinx.yml.erb"
         variables({
           :app_name => app_name,
+          :address => "localhost",
           :user => node[:owner_name],
           :mem_limit => 32
         })
