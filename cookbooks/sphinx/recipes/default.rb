@@ -4,10 +4,10 @@
 #
 
 # Set your application name here
-appname = "myapp"
+appname = "sphinxcheftest"
 
 # Uncomment the flavor of sphinx you want to use
-#flavor = "thinking_sphinx"
+flavor = "thinking_sphinx"
 #flavor = "ultrasphinx"
 
 # If you want to install on a specific utility instance rather than
@@ -17,8 +17,8 @@ appname = "myapp"
 # run by the time this executes on the utility instance. If that occurs
 # just deploy again and the recipe should succeed.
 
-utility_name = nil
-# utility_name = "sphinx"
+# utility_name = nil
+utility_name = "sphinx"
 
 # If you want to have scheduled reindexes in cron, enter the minute
 # interval here. This is passed directly to cron via /, so you should
@@ -27,7 +27,7 @@ utility_name = nil
 # If you don't want scheduled reindexes, just leave this set to nil.
 # Setting it equal to 10 would run the cron job every 10 minutes.
 
-cron_interval = nil #If this is not set your data will NOT be indexed
+cron_interval = 10 #If this is not set your data will NOT be indexed
 
 if utility_name
   if ['solo', 'app', 'app_master'].include?(node[:instance_role])
